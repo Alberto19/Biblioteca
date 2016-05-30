@@ -11,6 +11,7 @@ public class Usuario {
 	private long id;
 	private String login;
 	private String senha;
+	
 
 	public Usuario(String login, String senha) {
 		this.login = login;

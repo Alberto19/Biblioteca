@@ -13,7 +13,7 @@ import br.com.impacta.Biblioteca.model.Usuario;
 public class UsuarioLogado implements Serializable{
 
 	private Usuario usuario;
-
+	
 	public Usuario getUsuario() {
 		return usuario;
 	}

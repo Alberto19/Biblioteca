@@ -51,9 +51,9 @@
 			    <div class="collapse navbar-collapse" id="myNavbar">
 			      <ul class="nav navbar-nav">
 			        <li class="active"><a href="#">Home</a></li>
-			        <li><a href="#">About</a></li>
-			        <li><a href="#">Projects</a></li>
-			        <li><a href="#">Contact</a></li>
+			        <li><a href="#">Livros </a></li>
+			        <li><a href="#">Emprestimo</a></li>
+			        <li><a href="#">Devolução</a></li>
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right">
 			        <li><a href="form"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
