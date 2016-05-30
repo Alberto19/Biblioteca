@@ -10,13 +10,14 @@ public class Usuario {
 	@GeneratedValue
 	private long id;
 	private String login;
-
 	private String senha;
 
 	public Usuario(String login, String senha) {
 		this.login = login;
 		this.senha = senha;
 	}
+	
+	public Usuario() {}
 	
 	
 	public long getId() {

@@ -1,12 +1,10 @@
 package br.com.impacta.Biblioteca.dao;
 
-import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import br.com.impacta.Biblioteca.model.Usuario;
 
 
-@RequestScoped
 public class UsuarioDAO {
 
 private final EntityManager em;
@@ -36,7 +34,7 @@ private final EntityManager em;
 	public boolean existe(Usuario usuario) {
 		return !em.createQuery("select u from Usuario u where u.login = "
 			+ ":login and u.senha = :senha", Usuario.class)
-			.setParameter("nome", usuario.getLogin())
+			.setParameter("login", usuario.getLogin())
 			.setParameter("senha", usuario.getSenha())
 			.getResultList().isEmpty();
 	}
