@@ -1,39 +1,40 @@
 package br.com.impacta.Biblioteca.model;
 
-import java.util.Calendar;
 
-import javax.inject.Inject;
+
+import java.util.Calendar;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import br.com.caelum.vraptor.Convert;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
-public class Livro {
+public class Item {
 
 	@Id @GeneratedValue
 	private long isbn;
 
-
 	private String titulo;
 	private String autor;
+	private String editora;
 	
-	@Convert(Calendar.class)
+	@Temporal(TemporalType.DATE)
 	private Calendar ano;
+	private boolean status;
 	
-	@Inject
-	public Livro(long isbn, String titulo, String autor, Calendar ano ) {
+
+	public Item(long isbn, String titulo, String autor, String editora, Calendar ano, boolean status ) {
 		this.isbn = isbn;
 		this.titulo = titulo;
 		this.autor = autor;
+		this.editora = editora;
 		this.ano = ano;
+		this.status = status;
 	}
 	
-	@Deprecated
-	public Livro() {
-	
-	}
+
+	public Item() {}
 	
 	public long getIsbn() {
 		return isbn;
@@ -59,12 +60,27 @@ public class Livro {
 		this.autor = autor;
 	}
 
+	public String getEditora() {
+		return editora;
+	}
+
+	public void setEditora(String editora) {
+		this.editora = editora;
+	}
+	
 	public Calendar getAno() {
 		return ano;
 	}
 
 	public void setAno(Calendar ano) {
 		this.ano = ano;
+	}
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 }

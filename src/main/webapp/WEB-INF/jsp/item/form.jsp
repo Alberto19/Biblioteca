@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Impacta Biblioteca</title>
+<title>Livros</title>
 	<c:url value="/resources/css" var="cssPath" />
 	<link rel="stylesheet" href="${cssPath }/bootstrap.min.css">
 	<link rel="stylesheet" href="${cssPath }/bootstrap-theme.min.css">
@@ -30,6 +31,9 @@
       }
       .row.content {height:auto;} 
     }
+    .container{
+    	padding-top:20px;
+    }
   </style>
 </head>
 <body>
@@ -46,7 +50,7 @@
 			    </div>
 			    <div class="collapse navbar-collapse" id="myNavbar">
 			      <ul class="nav navbar-nav">
-			        <li><a href="<c:url value='/item/lista'/>"> Livros </a></li>
+			        <li class="active"><a href="<c:url value='/item/lista'/>"> Livros </a></li>
 			        <li><a href="#">Emprestimo</a></li>
 			        <li><a href="#">Devolução</a></li>
 			      </ul>
@@ -58,11 +62,41 @@
 		</nav>
 	</header>
 	<main>
-		<div class="container-fluid text-center">    
-
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-10" >
+					<form   action="<c:url value='Salvar' />" method="post">
+							<div class="form-group">
+								<label for="titulo">Titulo:</label> 
+								<input id="titulo" class="form-control" type="text" name="item.titulo"  />
+							</div>
+							<div class="form-group">
+								<label for="autor">Autor:</label> 
+								<input id="autor" class="form-control" type="text" name="item.autor"  />
+							</div>
+							<div class="form-group">
+								<label for="editora">Editora:</label> 
+								<input id="editora" class="form-control" type="text" name="item.editora"  />
+							</div>
+							<div class="form-group">
+								<input id="ano" class="form-control" type="date" name="item.ano" />
+							</div>
+							<div class="form-group ">
+								<label for="status">Status:</label>
+								<div class="radio">
+									<label><input id="status"  type="radio" name="item.status" value="true" />True</label>
+									<label><input id="status"  type="radio" name="item.status" value="false" />False</label>
+								</div>
+							</div>
+							
+				
+							<input type="submit" value="Salvar" class="btn btn-primary" />
+						</form>
+							<div class="alet alert-success" role="alert"> ${mensagem}</div>
+					</div>
+				</div>
 		</div>
 	</main>
-
 	<footer class="navbar-fixed-bottom navbar-inverse">
 		<p>© Impacta 2015. Todos os direitos reservados. Tel.: 11 3254-8300 / CAMPUS BARRA FUNDA - Av. Rudge, 315</p>
 	</footer>

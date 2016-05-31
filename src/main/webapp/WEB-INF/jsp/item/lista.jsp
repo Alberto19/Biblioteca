@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+       <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Impacta Biblioteca</title>
+<title>Livros</title>
 	<c:url value="/resources/css" var="cssPath" />
 	<link rel="stylesheet" href="${cssPath }/bootstrap.min.css">
 	<link rel="stylesheet" href="${cssPath }/bootstrap-theme.min.css">
@@ -46,7 +47,7 @@
 			    </div>
 			    <div class="collapse navbar-collapse" id="myNavbar">
 			      <ul class="nav navbar-nav">
-			        <li><a href="<c:url value='/item/lista'/>"> Livros </a></li>
+			        <li class="active"><a href="<c:url value='/item/form'/>"> Livros </a></li>
 			        <li><a href="#">Emprestimo</a></li>
 			        <li><a href="#">Devolução</a></li>
 			      </ul>
@@ -58,11 +59,37 @@
 		</nav>
 	</header>
 	<main>
-		<div class="container-fluid text-center">    
-
+		<div class="container-fluid text-center">  
+			<table class="table table-stripped table-hover  table-bordered">
+				<thead>
+					<tr>
+						<th>Titulo</th>
+						<th>Autor</th>
+						<th>Editora</th>
+						<th>Ano</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${itemList}" var="item">
+						<tr>
+							<td>${item.titulo}</td>
+							<td>${item.autor}</td>
+							<td>${item.editora}</td>
+							<td>${item.ano}</td>
+							<td>${item.status}</td>
+						<!-- 
+							<td>
+								<c:url value="/produto/enviaPedidoDeNovosItens?produto.nome=${produto.nome}" var="url" />    
+								<a href="${url }"> Pedir mais Itens!</a>
+							</td> -->	
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		
 		</div>
 	</main>
-
 	<footer class="navbar-fixed-bottom navbar-inverse">
 		<p>© Impacta 2015. Todos os direitos reservados. Tel.: 11 3254-8300 / CAMPUS BARRA FUNDA - Av. Rudge, 315</p>
 	</footer>

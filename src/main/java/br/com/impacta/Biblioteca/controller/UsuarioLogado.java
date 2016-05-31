@@ -7,7 +7,7 @@ import javax.inject.Named;
 import br.com.caelum.vraptor.Get;
 import br.com.impacta.Biblioteca.model.Usuario;
 
-@SuppressWarnings("serial")
+
 @SessionScoped
 @Named
 public class UsuarioLogado implements Serializable{

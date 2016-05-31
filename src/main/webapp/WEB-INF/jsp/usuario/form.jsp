@@ -15,23 +15,22 @@
 		.navbar-header button{
 			color:#fff;
 		}
-		.fullscreen {
-			width: 100%;
-		}
 
-		main{
-			padding-top: 50px;
-		}
 		footer{
 			background: #333;
 			color: #fff;
 			text-align: center;
-			padding: 20px;
+			padding: 22px;
 		}
 		
 		label{
 		color: #FFFAFA;
 		}
+		
+		main{
+		padding-top: 50px;
+		}
+
 	</style>
 
 </head>
@@ -44,45 +43,56 @@
 			<form class="form-inline navbar-form navbar-right"  action="<c:url value='autentica' />" method="post">
 				<div class="form-group">
 					<label for="login">Login:</label> 
-					<input id="login" class="form-control" type="text" name="usuario.login"  />
+					<input id="login" class="form-control" type="text" name="login"  />
 				</div>
 				<div class="form-group">
 					<label for="senha">Senha:</label> 
-					<input id="senha" class="form-control" type="password" name="usuario.senha" />
+					<input id="senha" class="form-control" type="password" name="senha" />
 				</div>
-	
+				<div class="form-group">
+			      <label for="perfil">Perfil:</label>
+				      <select class="form-control" id="perfil" name="perfil">
+				        <option  value="ALUNO">Aluno</option>
+				        <option	 value="PROFESSOR">Professor</option>
+				        <option  value="BIBLIOTECARIO">Bibliotecario</option>
+				      </select>  
+				</div>
+				
 				<input type="submit" value="Entrar" class="btn btn-primary" />
 			</form>
+			
+				<c:forEach items="${errors}" var="erro">
+					${erro.category} - ${erro.message}
+				</c:forEach>
 		</nav> 
 	</header>
-	<main>	
-	<div class="container-fluid">
-		<div class="row" id="home"> 
-			<div id="carousel" class="carousel slide" data-ride="carousel">
-				<div class="carousel-inner" role="listbox">
-					<c:url value="/resources/img" var="imgPath" />
-					<div class="item active">
-						<img src="${imgPath}/biblioteca.jpg" alt="Biblioteca"  class="fullscreen">
+	<main>
+		<div class="container-fluid">
+			<div class="row" >
+				<div id="carousel" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner" role="listbox">
+						<c:url value="/resources/img" var="imgPath" />
+						<div class="item active">
+							<img src="${imgPath}/biblioteca3.jpg" alt="Biblioteca" >
+						</div>
+						<div class="item">	
+							<img src="${imgPath}/biblioteca1.jpg" alt="Biblioteca" >
+						</div>
+						<div class="item">	
+							<img src="${imgPath}/biblioteca2.jpeg" alt="Biblioteca" >
+						</div>
 					</div>
-					<div class="item">	
-						<img src="${imgPath}/biblioteca1.jpg" alt="Biblioteca" class="fullscreen">
-					</div>
-					<div class="item">	
-						<img src="${imgPath}/biblioteca2.jpg" alt="Biblioteca" class="fullscreen">
-					</div>
+					<a href="#carousel" data-slide="prev" class="left carousel-control">
+						<span class="glyphicon glyphicon-chevron-left"></span>
+					</a>
+					<a href="#carousel" data-slide="next" class="right carousel-control">
+					<span class="glyphicon glyphicon-chevron-right">
+					</a>
 				</div>
-					<a href="#carousel" data-slide="prev" class="left carousel-control" role="button">
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a href="#carousel" data-slide="next" class="right carousel-control" role="button">
-						<span class="glyphicon glyphicon-chevron-right" aria-hidden="true">
-						<span class="sr-only">Next</span>
-					</a>
 			</div>
 		</div>
-	</div>
 	</main>
+	
 
 	<footer class="navbar-fixed-bottom navbar-inverse">
 		<p>© Impacta 2015. Todos os direitos reservados. Tel.: 11 3254-8300 / CAMPUS BARRA FUNDA - Av. Rudge, 315</p>

@@ -30,7 +30,27 @@ private final EntityManager em;
 	public Usuario Buscar(Usuario usuario) {
 		return em.find(Usuario.class, usuario.getId());
 	}
+	
+	public Usuario BuscaLogin(String login) {
+		return em.createQuery("select u from Usuario u where u.login = "
+				+ ":login", Usuario.class)
+				.setParameter("login", login)
+				.getSingleResult();
+	}
+	
+	
+/*	
 	//Metodo Para Verificar se um Usuario Existe
+	public boolean existe(Usuario usuario) {
+		return !em.createQuery("select u from Usuario u where u.login = "
+			+ ":login and u.senha = :senha and u.perfil = :perfil" , Usuario.class)
+			.setParameter("login", usuario.getLogin())
+			.setParameter("senha", usuario.getSenha())
+			.setParameter("perfil", usuario.getPerfil())
+			.getResultList().isEmpty();
+	}
+	*/
+	
 	public boolean existe(Usuario usuario) {
 		return !em.createQuery("select u from Usuario u where u.login = "
 			+ ":login and u.senha = :senha", Usuario.class)
@@ -38,6 +58,7 @@ private final EntityManager em;
 			.setParameter("senha", usuario.getSenha())
 			.getResultList().isEmpty();
 	}
+	
 	
 	
 }
