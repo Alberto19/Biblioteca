@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+       <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,10 +32,9 @@
       .row.content {height:auto;} 
     }
     main{
-    padding-top: 20px;
-    }
+    	padding-top: 20px;
+   	}
   </style>
- 
 </head>
 <body>
 	<header>
@@ -50,11 +49,11 @@
 			      <a class="navbar-brand" href="<c:url value='/inicio/index'/>">Biblioteca Impacta</a>
 			    </div>
 			    <div class="collapse navbar-collapse" id="myNavbar">
-			      <ul class="nav navbar-nav">
-			        <li class="active"><a href="<c:url value='/item/lista'/>"> Livros </a></li>
+			       <ul class="nav navbar-nav">
+			        <li class="active"><a href="<c:url value='/item/index'/>">Livros</a></li>
 			        <li><a href="#">Emprestimo</a></li>
 			        <li><a href="#">Devolução</a></li>
-			        <li><a href="<c:url value='/usuario/index'/>">Usuarios</a></li>
+			     	<li><a href="<c:url value='/usuario/index'/>">Usuarios</a></li>
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right">
 			        <li><a href="<c:url value='/usuario/login'/>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
@@ -64,53 +63,48 @@
 		</nav>
 	</header>
 	<main>
-		<div class="container-fluid">
-			<div class="row content">
-				 <div class="col-sm-3 sidenav">
-			      		<ul class="nav nav-pills nav-stacked">
-				        	<li><a href="<c:url value='/item/index'/>">Home</a></li>
-				        	<li class="active"><a href="<c:url value='/item/form'/>">Inserir Livros</a></li>
-				      	</ul>
-			    </div>
-				<div class="col-sm-9">
-					<form   action="<c:url value='Salvar'/>" method="post">
-						<div class="form-group">
-							<label for="titulo">Titulo:</label> 
-							<input id="titulo" class="form-control" type="text" name="item.titulo"  />
-								<c:forEach  items="${errors}" var="erro">
-								 	${erro.message} <br />
-								</c:forEach>
-						</div>
-						<div class="form-group">
-							<label for="autor">Autor:</label> 
-							<input id="autor" class="form-control" type="text" name="item.autor"  />
-							<c:forEach  items="${errors}" var="erro">
-								 	${erro.message} <br />
-								</c:forEach>
-						</div>
-						<div class="form-group">
-							<label for="editora">Editora:</label> 
-							<input id="editora" class="form-control" type="text" name="item.editora"  />
-						</div>
-						<div class="form-group">
-						<label for="editora">Data de Edição:</label> 
-							<input id="ano" class="form-control" type="date" name="item.ano" />
-						</div>
-						<div class="form-group ">
-							<label for="status">Status:</label>
-							<div class="radio">
-								<label><input id="status"  type="radio" name="item.status" value="true" />True</label>
-								<label><input id="status"  type="radio" name="item.status" value="false" />False</label>
-							</div>
-						</div>
-						
-			
-						<input type="submit" value="Salvar" class="btn btn-primary" />
-					</form>
-						<div class="alet alert-success" role="alert"> ${mensagem}</div>
-				</div>
-			</div>
-		</div>
+	
+	<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="<c:url value='/item/index'/>">Home</a></li>
+        <li><a href="<c:url value='/item/form'/>">Inserir Livros</a></li>
+      </ul>
+    </div>
+
+    <div class="col-sm-9">
+ 		<table class="table table-stripped table-hover  table-bordered">
+			<thead>
+				<tr>
+					<th>Titulo</th>
+					<th>Autor</th>
+					<th>Editora</th>
+					<th>Ano</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${itemList}" var="item">
+					<tr>
+						<td>${item.titulo}</td>
+						<td>${item.autor}</td>
+						<td>${item.editora}</td>
+						<td>${item.ano}</td>
+						<td>${item.status}</td>
+					<!-- 
+						<td>
+							<c:url value="/produto/enviaPedidoDeNovosItens?produto.nome=${produto.nome}" var="url" />    
+							<a href="${url }"> Pedir mais Itens!</a>
+						</td> -->	
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+    </div>
+  </div>
+</div>
+
 	</main>
 	<footer class="navbar-fixed-bottom navbar-inverse">
 		<p>© Impacta 2015. Todos os direitos reservados. Tel.: 11 3254-8300 / CAMPUS BARRA FUNDA - Av. Rudge, 315</p>

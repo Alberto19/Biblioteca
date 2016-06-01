@@ -30,7 +30,7 @@ public class AutorizadorInterceptor {
 	@AroundCall
 	public void intercepta(SimpleInterceptorStack stack) {
 		if (usuarioLogado.getUsuario() == null) {
-			result.redirectTo(UsuarioController.class).form();
+			result.redirectTo(UsuarioController.class).login();
 			return;
 			}
 		stack.next();

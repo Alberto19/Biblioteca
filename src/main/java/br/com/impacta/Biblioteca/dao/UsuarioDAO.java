@@ -2,6 +2,8 @@ package br.com.impacta.Biblioteca.dao;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+
 import br.com.impacta.Biblioteca.model.Usuario;
 
 
@@ -32,14 +34,20 @@ private final EntityManager em;
 	}
 	
 	public Usuario BuscaLogin(String login) {
-		return em.createQuery("select u from Usuario u where u.login = "
-				+ ":login", Usuario.class)
-				.setParameter("login", login)
-				.getSingleResult();
+	
+		try{
+			return em.createQuery("select u from Usuario u where u.login = "
+					+ ":login", Usuario.class)
+					.setParameter("login", login)
+					.getSingleResult();
+		}catch(NoResultException ex){
+			return null ;
+		}
+		
 	}
 	
 	
-/*	
+	/*
 	//Metodo Para Verificar se um Usuario Existe
 	public boolean existe(Usuario usuario) {
 		return !em.createQuery("select u from Usuario u where u.login = "
@@ -48,16 +56,15 @@ private final EntityManager em;
 			.setParameter("senha", usuario.getSenha())
 			.setParameter("perfil", usuario.getPerfil())
 			.getResultList().isEmpty();
-	}
-	*/
+	}*/
 	
-	public boolean existe(Usuario usuario) {
-		return !em.createQuery("select u from Usuario u where u.login = "
-			+ ":login and u.senha = :senha", Usuario.class)
+	
+	/*public boolean existe(Usuario usuario) {
+		return em.createQuery("select u from Usuario u where u.login = "
+			+ ":login, Usuario.class)
 			.setParameter("login", usuario.getLogin())
-			.setParameter("senha", usuario.getSenha())
 			.getResultList().isEmpty();
-	}
+	}*/
 	
 	
 	

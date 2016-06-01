@@ -8,17 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Item {
 
 	@Id @GeneratedValue
 	private long isbn;
-
 	private String titulo;
 	private String autor;
 	private String editora;
-	
 	@Temporal(TemporalType.DATE)
 	private Calendar ano;
 	private boolean status;

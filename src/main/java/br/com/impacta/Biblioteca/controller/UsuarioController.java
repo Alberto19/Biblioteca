@@ -11,6 +11,7 @@ import br.com.caelum.vraptor.validator.I18nMessage;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.impacta.Biblioteca.annotations.Public;
 import br.com.impacta.Biblioteca.dao.UsuarioDAO;
+import br.com.impacta.Biblioteca.model.Item;
 import br.com.impacta.Biblioteca.model.Usuario;
 
 @Controller
@@ -32,65 +33,85 @@ public class UsuarioController {
 	public UsuarioController() {
 		this(null, null, null, null);
 	}
-
+	//Action do Login 
 	@Get @Public
-	public void form() {
+	public void login() {
 	}
+	
+	//Action de Autenticacao do ussuario
+	@Post @Public
+	public void autentica(@Valid String login, String senha) {
+		if(login == null){
+			validator.add(new I18nMessage("usuario", "usuario.invalido"));
+			validator.onErrorUsePageOf(this).login();
+		}
+		if(senha == null){
+			validator.add(new I18nMessage("usuario", "usuario.invalido"));
+			validator.onErrorUsePageOf(this).login();
+		}
+		Usuario usuario = dao.BuscaLogin(login);
+		
+		if(usuario == null){
+			validator.add(new I18nMessage("usuario", "usuario.invalido"));
+			validator.onErrorUsePageOf(this).login();
+		}
+		
+		if (!usuario.getLogin()  .equals(login)) {
+			validator.add(new I18nMessage("usuario", "usuario.invalido"));
+			validator.onErrorUsePageOf(this).login();
+		}
+		
+		if (!usuario.getSenha().equals(senha)) {
+			validator.add(new I18nMessage("usuario", "usuario.invalido"));
+			validator.onErrorUsePageOf(this).login();
+		}
+		
+			if(usuario.getPerfil().equalsIgnoreCase(Usuario.Perfil.ALUNO.name())){
+				usuarioLogado.setUsuario(usuario);
+				result.redirectTo(UsuarioController.class).index();
+			}
+			else if(usuario.getPerfil().equalsIgnoreCase(Usuario.Perfil.PROFESSOR.name())){
+				usuarioLogado.setUsuario(usuario);
+				result.redirectTo(ItemController.class).form();
+			}
+			else if(usuario.getPerfil().equalsIgnoreCase(Usuario.Perfil.BIBLIOTECARIO.name())){
+				usuarioLogado.setUsuario(usuario);
+				result.redirectTo(ItemController.class).index();
+			}
+			else{
+				validator.add(new I18nMessage("usuario", "usuario.invalido"));
+				validator.onErrorUsePageOf(this).login();
+			}	
+	}
+	
+	//Action da pagina principal
 	@Get 
 	public void index(){
 		
 	}
 	
-
-	@Post @Public
-	public void autentica(@Valid String login, String senha, String perfil) {
-		if(login == null){
-			validator.add(new I18nMessage("usuario", "usuario.invalido"));
-			validator.onErrorUsePageOf(this).form();
-		}
-		Usuario usuario = dao.BuscaLogin(login);
-		
-		
-		if (!usuario.getLogin().equals(login)) {
-			validator.add(new I18nMessage("usuario", "usuario.invalido"));
-			validator.onErrorUsePageOf(this).form();
-		}
-		
-		if (!usuario.getSenha().equals(senha)) {
-			validator.add(new I18nMessage("usuario", "usuario.invalido"));
-			validator.onErrorUsePageOf(this).form();
-		}
-		
-		if(perfil.equalsIgnoreCase(usuario.getPerfil())){
-			if(usuario.getPerfil().equalsIgnoreCase(Usuario.Perfil.ALUNO.name())){
-				usuarioLogado.setUsuario(usuario);
-				result.redirectTo(UsuarioController.class).index();
-			}
-			if(perfil.equalsIgnoreCase(Usuario.Perfil.PROFESSOR.name())){
-				usuarioLogado.setUsuario(usuario);
-				result.redirectTo(ItemController.class).form();
-			}
-			if(perfil.equalsIgnoreCase(Usuario.Perfil.BIBLIOTECARIO.name())){
-				usuarioLogado.setUsuario(usuario);
-				result.redirectTo(ItemController.class).lista();
-			}
-		}else{
-			validator.add(new I18nMessage("usuario", "usuario.invalido"));
-			validator.onErrorUsePageOf(this).form();
-		}	
+	//Action do Form
+	@Get 
+	public void form() {
 		
 	}
 	
-	/*
+	//Action para Salvar um usuario
 	@Post 
-	public void  autentica(@Valid Usuario usuario) {
+	public void Salvar(@Valid Usuario usuario) {
 		
-		if(!dao.existe(usuario)){
-			validator.add(new I18nMessage("login", "login.invalido"));
-			validator.onErrorUsePageOf(this).form();
+		if(usuario.getLogin() == null){
+			validator.onErrorForwardTo(this).form();
 		}
-		usuarioLogado.setUsuario(usuario);
-		result.redirectTo(UsuarioController.class).index();
+		dao.Salvar(usuario);
+		// redirecionado o adiciona para a View lista
+		result.include("mensagem", "Item adicionado com sucesso!");
+		result.redirectTo(this).form();	
 		
-	}*/
+	}
+	
+
+	
+	
+
 }

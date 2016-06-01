@@ -3,6 +3,9 @@ package br.com.impacta.Biblioteca.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Usuario {
@@ -14,8 +17,11 @@ public class Usuario {
 	@Id
 	@GeneratedValue
 	private long id;
+	@NotNull(message="Login nulo ou inválido") 
 	private String login;
+	@NotNull(message="Senha nula ou inválida") 
 	private String senha;
+	@NotNull 
 	private String perfil;
 
 

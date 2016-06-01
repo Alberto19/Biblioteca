@@ -30,6 +30,9 @@
       }
       .row.content {height:auto;} 
     }
+    main{
+    padding-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -42,24 +45,34 @@
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>                        
 			      </button>
-			      <a class="navbar-brand" href="<c:url value='/usuario/index'/>">Biblioteca Impacta</a>
+			      <a class="navbar-brand" href="<c:url value='/inicio/index'/>">Biblioteca Impacta</a>
 			    </div>
 			    <div class="collapse navbar-collapse" id="myNavbar">
-			      <ul class="nav navbar-nav">
-			        <li><a href="<c:url value='/item/lista'/>"> Livros </a></li>
-			        <li><a href="#">Emprestimo</a></li>
-			        <li><a href="#">Devolução</a></li>
-			      </ul>
+				     <ul class="nav navbar-nav">
+				        <li><a href="<c:url value='/item/index'/>">Livros</a></li>
+				        <li><a href="#">Emprestimo</a></li>
+				        <li><a href="#">Devolução</a></li>
+				     	<li class="active"><a href="<c:url value='/usuario/index'/>">Usuarios</a></li>
+				      </ul>
 			      <ul class="nav navbar-nav navbar-right">
-			        <li><a href="<c:url value='/usuario/form'/>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+			        <li><a href="<c:url value='/usuario/login'/>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
 			      </ul>
 			    </div>
 			</div>
 		</nav>
 	</header>
 	<main>
-		<div class="container-fluid text-center">    
-
+		<div class="container-fluid">
+			<div class="row content">
+		 		<div class="col-sm-3 sidenav">
+		      		<ul class="nav nav-pills nav-stacked">
+			        	<li class="active"><a href="<c:url value='/usuario/index'/>">Home</a></li>
+			        	<li><a href="<c:url value='/usuario/form'/>">Inserir Usuarios</a></li>
+			      	</ul>
+	    		</div>
+				<div class="col-sm-9">
+				</div>
+			</div>
 		</div>
 	</main>
 

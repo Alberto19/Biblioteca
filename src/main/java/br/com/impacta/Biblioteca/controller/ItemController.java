@@ -7,6 +7,7 @@ import br.com.caelum.vraptor.Controller;
 import br.com.caelum.vraptor.Get;
 import br.com.caelum.vraptor.Post;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.validator.I18nMessage;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.impacta.Biblioteca.annotations.Public;
 import br.com.impacta.Biblioteca.dao.ItemDAO;
@@ -42,18 +43,27 @@ public class ItemController {
 		result.include("itemList", dao.Lista());
 	}
 	
+	@Get
+	public void index(){
+		
+	}
+	
 	@Post 
 	public void Salvar(@Valid Item item) {
+		if(item.getTitulo() == null){
+			validator.add(new I18nMessage("item", "itemTitulo.invalido"));	
+		}else if(item.getAutor() == null){
+			validator.add(new I18nMessage("item", "itemAutor.invalido"));	
+		}
 		
-		validator.onErrorForwardTo(this).form();
-	
+		validator.onErrorUsePageOf(this).form();
+		
+		
 		
 		dao.Salvar(item);
 		// redirecionado o adiciona para a View lista
 		result.include("mensagem", "Item adicionado com sucesso!");
-		result.redirectTo(this).lista();
-		
-		
+		result.redirectTo(this).form();
 	}
 	
 	
