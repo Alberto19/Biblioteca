@@ -44,7 +44,8 @@
 			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>                        
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>                          
 			      </button>
 			      <a class="navbar-brand" href="<c:url value='/inicio/index'/>">Biblioteca Impacta</a>
 			    </div>
@@ -85,12 +86,14 @@
 				</tr>
 			</thead>
 			<tbody>
+			
 				<c:forEach items="${itemList}" var="item">
 					<tr>
 						<td>${item.titulo}</td>
 						<td>${item.autor}</td>
 						<td>${item.editora}</td>
-						<td>${item.ano}</td>
+						<td><fmt:formatDate value="${item.ano.time}"
+   							 pattern="dd/MM/yyyy" />       </td>
 						<td>${item.status}</td>
 					<!-- 
 						<td>

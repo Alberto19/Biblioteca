@@ -45,6 +45,7 @@
 			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>                        
 			      </button>
 			      <a class="navbar-brand" href="<c:url value='/inicio/index'/>">Biblioteca Impacta</a>
@@ -77,37 +78,27 @@
 						<div class="form-group">
 							<label for="titulo">Titulo:</label> 
 							<input id="titulo" class="form-control" type="text" name="item.titulo"  />
-								<c:forEach  items="${errors}" var="erro">
-								 	${erro.message} <br />
-								</c:forEach>
 						</div>
 						<div class="form-group">
 							<label for="autor">Autor:</label> 
 							<input id="autor" class="form-control" type="text" name="item.autor"  />
-							<c:forEach  items="${errors}" var="erro">
-								 	${erro.message} <br />
-								</c:forEach>
 						</div>
 						<div class="form-group">
 							<label for="editora">Editora:</label> 
 							<input id="editora" class="form-control" type="text" name="item.editora"  />
 						</div>
 						<div class="form-group">
-						<label for="editora">Data de Edição:</label> 
-							<input id="ano" class="form-control" type="date" name="item.ano" />
+							<label for="ano">Data de Edição:</label> 
+							<input id="ano" class="form-control" type="text" name="item.ano"  />
 						</div>
 						<div class="form-group ">
-							<label for="status">Status:</label>
-							<div class="radio">
-								<label><input id="status"  type="radio" name="item.status" value="true" />True</label>
-								<label><input id="status"  type="radio" name="item.status" value="false" />False</label>
-							</div>
+							<label for="quantidade">Quantidade:</label>
+							<input id="quantidade" class="form-control" type="text" name="item.quantidade"/>
 						</div>
-						
-			
 						<input type="submit" value="Salvar" class="btn btn-primary" />
-					</form>
 						<div class="alet alert-success" role="alert"> ${mensagem}</div>
+					</form>
+						
 				</div>
 			</div>
 		</div>

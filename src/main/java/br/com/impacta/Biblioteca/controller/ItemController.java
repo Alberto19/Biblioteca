@@ -27,8 +27,6 @@ public class ItemController {
 		this.dao = dao;
 		this.result = result;
 	}
-	
-	
 	public ItemController() {
 		this(null,null,null);
 	}
@@ -38,32 +36,30 @@ public class ItemController {
 		
 	}
 	
-	@Get 
-	public void lista() {
-		result.include("itemList", dao.Lista());
-	}
-	
 	@Get
 	public void index(){
-		
+		result.include("itemList", dao.Lista());
 	}
 	
 	@Post 
 	public void Salvar(@Valid Item item) {
 		if(item.getTitulo() == null){
-			validator.add(new I18nMessage("item", "itemTitulo.invalido"));	
+			validator.onErrorForwardTo(this).form();
 		}else if(item.getAutor() == null){
-			validator.add(new I18nMessage("item", "itemAutor.invalido"));	
+			validator.onErrorForwardTo(this).form();	
+		}else if(item.getEditora() == null){
+			validator.onErrorForwardTo(this).form();
+		}else if(item.getAno() == null){
+			validator.onErrorForwardTo(this).form();
+		}else if(item.getQuantidade() == 0){
+			validator.onErrorForwardTo(this).form();
+		}else{
+			dao.Salvar(item);
+			// redirecionado o adiciona para a View lista
+			result.include("mensagem", "Item adicionado com sucesso!");
+			result.redirectTo(this).form();
 		}
 		
-		validator.onErrorUsePageOf(this).form();
-		
-		
-		
-		dao.Salvar(item);
-		// redirecionado o adiciona para a View lista
-		result.include("mensagem", "Item adicionado com sucesso!");
-		result.redirectTo(this).form();
 	}
 	
 	

@@ -15,21 +15,24 @@ public class Item {
 
 	@Id @GeneratedValue
 	private long isbn;
+	@NotNull
 	private String titulo;
+	@NotNull
 	private String autor;
+	@NotNull
 	private String editora;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE) @NotNull
 	private Calendar ano;
-	private boolean status;
+	@NotNull
+	private int quantidade ;
 	
-
-	public Item(long isbn, String titulo, String autor, String editora, Calendar ano, boolean status ) {
+	public Item(long isbn, String titulo, String autor, String editora, Calendar ano, int quantidade ) {
 		this.isbn = isbn;
 		this.titulo = titulo;
 		this.autor = autor;
 		this.editora = editora;
 		this.ano = ano;
-		this.status = status;
+		this.quantidade = quantidade;
 	}
 	
 
@@ -74,12 +77,14 @@ public class Item {
 	public void setAno(Calendar ano) {
 		this.ano = ano;
 	}
-	public boolean isStatus() {
-		return status;
+
+	public int getQuantidade() {
+		return quantidade;
 	}
 
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
+
 
 }

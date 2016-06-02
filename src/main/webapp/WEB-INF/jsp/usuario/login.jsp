@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Formulario de Login</title>
+<title>Biblioteca Impacta</title>
 
 <c:url value="/resources/css" var="cssPath" />
 <link rel="stylesheet" href="${cssPath }/bootstrap.min.css">
@@ -38,7 +38,7 @@
 	<header> 
 		<nav class="navbar navbar-fixed-top navbar-inverse">
 			<div class="navbar-header">
-				<a href="#home" class="navbar-brand">Biblioteca Impacta </a>
+				<a href="<c:url value='/inicio/index'/>" class="navbar-brand">Biblioteca Impacta </a>
 			</div>
 			<form class="form-inline navbar-form navbar-right"  action="<c:url value='autentica' />" method="post">
 				<div class="form-group">
@@ -86,7 +86,7 @@
 						<span class="glyphicon glyphicon-chevron-left"></span>
 					</a>
 					<a href="#carousel" data-slide="next" class="right carousel-control">
-					<span class="glyphicon glyphicon-chevron-right">
+					<span class="glyphicon glyphicon-chevron-right"></span>
 					</a>
 				</div>
 			</div>
@@ -103,7 +103,5 @@
 	<script src="${jsPath}/wow.min.js" type="text/javascript"></script>
     <script src="${jsPath}/jquery-2.2.4.min.js" type="text/javascript"></script>
     <script src="${jsPath}/bootstrap.min.js" type="text/javascript"></script>
-
-
 </body>
 </html>

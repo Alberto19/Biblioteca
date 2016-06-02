@@ -1,12 +1,11 @@
-package br.com.impacta.Biblioteca.dao;
 
+package br.com.impacta.Biblioteca.dao;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import br.com.impacta.Biblioteca.model.Item;
-import br.com.impacta.Biblioteca.model.Usuario;
 
 public class ItemDAO {
 	

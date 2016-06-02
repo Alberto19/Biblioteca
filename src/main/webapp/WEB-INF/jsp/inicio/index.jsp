@@ -17,26 +17,30 @@
 			text-align: center;
 			padding: 22px;
 		}
+			main{
+		padding-top: 50px;
+		}
 	</style>
 </head>
 <body>
 	<header>
-		<nav class="navbar navbar-inverse">
+		<nav class="navbar navbar-fixed-top navbar-inverse">
  			<div class="container-fluid">
 	    		<div class="navbar-header">
 			      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 			        <span class="icon-bar"></span>
 			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span>                        
+			        <span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 	                               
 			      </button>
-			      <a class="navbar-brand" href="<c:url value='/inicio/index'/>">Biblioteca Impacta</a>
+			      <a class="navbar-brand active" href="<c:url value='/inicio/index'/>">Biblioteca Impacta</a>
 			    </div>
 			    <div class="collapse navbar-collapse" id="myNavbar">
 				     <ul class="nav navbar-nav">
 				        <li><a href="<c:url value='/item/index'/>">Livros</a></li>
 				        <li><a href="#">Emprestimo</a></li>
 				        <li><a href="#">Devolução</a></li>
-				     	<li class="active"><a href="<c:url value='/usuario/index'/>">Usuarios</a></li>
+				     	<li><a href="<c:url value='/usuario/index'/>">Usuarios</a></li>
 				      </ul>
 			      <ul class="nav navbar-nav navbar-right">
 			        <li><a href="<c:url value='/usuario/login'/>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
@@ -65,7 +69,7 @@
 						<span class="glyphicon glyphicon-chevron-left"></span>
 					</a>
 					<a href="#carousel" data-slide="next" class="right carousel-control">
-					<span class="glyphicon glyphicon-chevron-right">
+					<span class="glyphicon glyphicon-chevron-right"></span>
 					</a>
 				</div>
 			</div>
