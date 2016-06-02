@@ -3,6 +3,7 @@ package br.com.impacta.Biblioteca.model;
 
 
 import java.util.Calendar;
+import java.util.List;
 
 import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.Dependent;
@@ -16,11 +17,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.ForeignKey;
+
+
 
 
 @Entity
@@ -28,51 +32,67 @@ public class Emprestimo  {
 	
 	@Id @GeneratedValue
 	private long id;
-	private Usuario usuario;
-
-	private Item item;
+	@OneToOne
+	private Usuario bibliotecario;
+	@OneToOne
+	private Usuario tomador;
+	@OneToMany
+	private List<Item> itens;
+	
 	@Temporal(TemporalType.DATE) @NotNull
-	private Calendar data;
+	private Calendar dataEmprestimo;
+	
+	@Temporal(TemporalType.DATE) @NotNull
+	private Calendar dataDevolucao;
 	
 
-	public Emprestimo(long id, Usuario usuario, Item item, Calendar data) {
+	public Emprestimo(long id, Usuario bibliotecario, Usuario tomador , List<Item> itens, Calendar dataEmprestimo, Calendar dataDEvolucao) {
 		this.id = id;
-		this.usuario = usuario;
-		this.item = item;
-		this.data = data;	
+		this.bibliotecario = bibliotecario;
+		this.tomador = tomador;
+		this.itens = itens;
+		this.dataEmprestimo = dataEmprestimo;
+		this.dataDevolucao = dataDEvolucao;
+	
 	}
 	public Emprestimo() {}
-
 	public long getId() {
 		return id;
 	}
-
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	public Usuario getUsuario() {
-		return usuario;
+	public Usuario getBibliotecario() {
+		return bibliotecario;
+	}
+	public void setBibliotecario(Usuario bibliotecario) {
+		this.bibliotecario = bibliotecario;
+	}
+	public Usuario getTomador() {
+		return tomador;
+	}
+	public void setTomador(Usuario tomador) {
+		this.tomador = tomador;
+	}
+	public List<Item> getItens() {
+		return itens;
+	}
+	public void setItens(List<Item> itens) {
+		this.itens = itens;
+	}
+	public Calendar getDataEmprestimo() {
+		return dataEmprestimo;
+	}
+	public void setDataEmprestimo(Calendar dataEmprestimo) {
+		this.dataEmprestimo = dataEmprestimo;
+	}
+	public Calendar getDataDevolucao() {
+		return dataDevolucao;
+	}
+	public void setDataDevolucao(Calendar dataDevolucao) {
+		this.dataDevolucao = dataDevolucao;
 	}
 
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
 
-	public Item getItem() {
-		return item;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
-	}
-
-	public Calendar getData() {
-		return data;
-	}
-
-	public void setData(Calendar data) {
-		this.data = data;
-	}
 	
 }
