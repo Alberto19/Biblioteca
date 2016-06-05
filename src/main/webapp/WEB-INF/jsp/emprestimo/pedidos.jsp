@@ -99,10 +99,29 @@
 										<td>${itens.titulo}</td>
 										</c:forEach>
 										
-										<td><a href="edita?id=${emprestimo.id}">
+										<td>
+											<!-- <form action="edita" method="get">
+											    <input type="hidden" name="emprestimo.id" 
+											      value="${emprestimo.id }" /> 
+											      
+										    	<input type="hidden" name="emprestimo.solicitante.id" 
+											       value="${emprestimo.solicitante.id}"/>
+											       
+											    <c:forEach items="${emprestimo.itens}" var="itens">
+											    <input type="hidden" name="emprestimo.itens.isbn" 
+											      value="${itens.isbn}" /> 
+											     </c:forEach>    
+											     <button class="btn btn btn-warning btn-sm " type="submit">
+											Editar</button>
+											</form>		 -->
+										
+										
+										
+										<a href="edita?id=${emprestimo.id}">
 											<button class="btn btn btn-warning btn-sm " type="submit">
 											Editar</button>
-											</a>
+											</a> 
+											
 							          	</td>			
 									</tr>
 								</c:forEach>

@@ -72,7 +72,7 @@
 		      		<ul class="nav nav-pills nav-stacked">
 			        	<li class="active"><a href="<c:url value='/emprestimo/index'/>">Home</a></li>
 			        	<li><a href="<c:url value='/emprestimo/form'/>">Pedir Emprestimo</a></li>
-			        	<li class="active"><a href="<c:url value='/emprestimo/pedidos'/>">Lista de Pedidos</a></li>
+			        	<li ><a href="<c:url value='/emprestimo/pedidos'/>">Lista de Pedidos</a></li>
 			      	</ul>
 	    		</div>
 				<div class="col-sm-9">

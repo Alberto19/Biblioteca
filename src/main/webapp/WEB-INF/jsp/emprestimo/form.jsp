@@ -74,7 +74,7 @@
 			      		<ul class="nav nav-pills nav-stacked">
 				        	<li><a href="<c:url value='/emprestimo/index'/>">Home</a></li>
 				        	<li class="active"><a href="<c:url value='/emprestimo/form'/>">Pedir Emprestimo</a></li>
-				        	<li class="active"><a href="<c:url value='/emprestimo/pedidos'/>">Lista de Pedidos</a></li>
+				        	<li><a href="<c:url value='/emprestimo/pedidos'/>">Lista de Pedidos</a></li>
 				      	</ul>
 			    </div>
 				<div class="col-sm-9">
@@ -114,9 +114,6 @@
 									</c:forEach>
 							</table>				
 						</div>
-						
-						<input type="submit" value="Salvar" class="btn btn-primary" />
-						<div class="alet alert-success" role="alert"> ${mensagem}</div>
 					</form>			
 				</div>
 			</div>

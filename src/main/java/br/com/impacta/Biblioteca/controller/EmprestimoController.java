@@ -48,8 +48,13 @@ public class EmprestimoController {
 	}
 	@Get
 	public Emprestimo edita(Long id) {
-		  return dao.Buscar(id);
+		  return dao.BuscaPedido(id);
 	}
+	
+	
+	
+	
+	
 	@Post
 	public void altera(Emprestimo emprestimo){
 		dao.Update(emprestimo);

@@ -1,3 +1,6 @@
+
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -38,6 +41,14 @@
  
 </head>
 <body>
+	<%!  
+	Date dateNow = new Date();
+    Date getDate()  
+    {  
+      return dateNow;  
+    } 
+    %>
+      
 	<header>
 		<nav class="navbar navbar-inverse">
  			<div class="container-fluid">
@@ -89,7 +100,9 @@
 									      value="${usuarioLogado.usuario.getId()}"/>  
 								    
 									    <label for="dataEmprestimo">Data Emprestimo:</label>
-									    <input id="dataEmprestimo" type="text" name="emprestimo.dataEmprestimo" />
+									    <input id="dataEmprestimo" type="text" name="emprestimo.dataEmprestimo"
+									    value="<fmt:formatDate value="<%=getDate()%>"
+					   							 pattern="dd/MM/yyyy"/>" />
 								    </div>
 							    
 								    <div class="form-group">
@@ -101,7 +114,8 @@
 									     </c:forEach>    
 								    
 								    	<label for="dataEmprestimo">Data Devolucao:</label>
-								    	<input id="dataEmprestimo" type="text" name="emprestimo.dataDevolucao" />
+								    	<input id="dataEmprestimo" type="text" name="emprestimo.dataDevolucao"
+								    	  />
 								    </div>
 							    <button class="btn btn-success " type="submit">Aprovar Pedido</button>
 					  		</fieldset>
