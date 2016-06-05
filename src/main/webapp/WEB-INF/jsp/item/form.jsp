@@ -53,12 +53,15 @@
 			    <div class="collapse navbar-collapse" id="myNavbar">
 			      <ul class="nav navbar-nav">
 			        <li class="active"><a href="<c:url value='/item/lista'/>"> Livros </a></li>
-			        <li><a href="#">Emprestimo</a></li>
+			        <li><a href="<c:url value='/emprestimo/index'/>">Emprestimo</a></li>
 			        <li><a href="#">Devolução</a></li>
 			        <li><a href="<c:url value='/usuario/index'/>">Usuarios</a></li>
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right">
-			        <li><a href="<c:url value='/usuario/login'/>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+			        <li>
+			        	<a href="<c:url value='/usuario/login'/>"  >
+			        	<span class="glyphicon glyphicon-log-in"></span> Logout</a>
+			        </li>
 			      </ul>
 			    </div>
 			</div>
@@ -92,9 +95,17 @@
 							<input id="ano" class="form-control" type="text" name="item.ano"  />
 						</div>
 						<div class="form-group ">
-							<label for="quantidade">Quantidade:</label>
-							<input id="quantidade" class="form-control" type="text" name="item.quantidade"/>
+							<select name="item.status"  class="form-control">
+							  <option value="disponivel">Disponivel</option>
+							  <option value="indisponivel">Indisponivel</option>
+							</select>
 						</div>
+						<div  class="form-group ">
+							<select name="item.especial"  class="form-control">
+							  <option value="sim">SIM</option>
+							  <option value="nao">NAO</option>
+							</select>
+						</div>		
 						<input type="submit" value="Salvar" class="btn btn-primary" />
 						<div class="alet alert-success" role="alert"> ${mensagem}</div>
 					</form>

@@ -24,18 +24,20 @@ public class Item {
 	@Temporal(TemporalType.DATE) @NotNull
 	private Calendar ano;
 	@NotNull
-	private int quantidade ;
+	private String status ;
+	@NotNull
+	private String especial;
 	
-	public Item(long isbn, String titulo, String autor, String editora, Calendar ano, int quantidade ) {
+	public Item(long isbn, String titulo, String autor, String editora, Calendar ano, String status,String especial ) {
 		this.isbn = isbn;
 		this.titulo = titulo;
 		this.autor = autor;
 		this.editora = editora;
 		this.ano = ano;
-		this.quantidade = quantidade;
+		this.status = status;
+		this.especial = especial;
 	}
 	
-
 	public Item() {}
 	
 	public long getIsbn() {
@@ -78,13 +80,19 @@ public class Item {
 		this.ano = ano;
 	}
 
-	public int getQuantidade() {
-		return quantidade;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
+	public String getEspecial() {
+		return especial;
+	}
 
+	public void setEspecial(String especial) {
+		this.especial = especial;
+	}
 }

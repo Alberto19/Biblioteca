@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Inserir Usuarios</title>
+<title>Emprestimo</title>
 	<c:url value="/resources/css" var="cssPath" />
 	<link rel="stylesheet" href="${cssPath }/bootstrap.min.css">
 	<link rel="stylesheet" href="${cssPath }/bootstrap-theme.min.css">
@@ -35,6 +35,7 @@
     padding-top: 20px;
     }
   </style>
+ 
 </head>
 <body>
 	<header>
@@ -51,10 +52,10 @@
 			    </div>
 			    <div class="collapse navbar-collapse" id="myNavbar">
 			      <ul class="nav navbar-nav">
-			        <li><a href="<c:url value='/item/index'/>">Livros</a></li>
-			        <li><a href="<c:url value='/emprestimo/index'/>">Emprestimo</a></li>
+			        <li><a href="<c:url value='/item/index'/>"> Livros </a></li>
+			        <li class="active"><a href="<c:url value='/emprestimo/index'/>">Emprestimo</a></li>
 			        <li><a href="#">Devolução</a></li>
-			     	<li class="active"><a href="<c:url value='/usuario/index'/>">Usuarios</a></li>
+			        <li><a href="<c:url value='/usuario/index'/>">Usuarios</a></li>
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right">
 			        <li>
@@ -66,41 +67,60 @@
 			</div>
 		</nav>
 	</header>
-	<main>	
+	<main>
 		<div class="container-fluid">
 			<div class="row content">
-		 		<div class="col-sm-3 sidenav">
-		      		<ul class="nav nav-pills nav-stacked">
-			        	<li><a href="<c:url value='/usuario/index'/>">Home</a></li>
-			        	<li class="active"><a href="<c:url value='/usuario/form'/>">Inserir Usuarios</a></li>
-			      	</ul>
-	    		</div>
+				 <div class="col-sm-3 sidenav">
+			      		<ul class="nav nav-pills nav-stacked">
+				        	<li><a href="<c:url value='/emprestimo/index'/>">Home</a></li>
+				        	<li class="active"><a href="<c:url value='/emprestimo/form'/>">Pedir Emprestimo</a></li>
+				        	<li class="active"><a href="<c:url value='/emprestimo/pedidos'/>">Lista de Pedidos</a></li>
+				      	</ul>
+			    </div>
 				<div class="col-sm-9">
-					<form   action="<c:url value='Salvar' />" method="post">
+                         		
 						<div class="form-group">
-							<label class="control-label" for="login">Login:</label> 
-							<input id="login" class="form-control" type="text" name="usuario.login" } />
-							
+							<table class="table table-stripped table-hover  table-bordered table-responsive"">
+									<tr>
+										<th>Usuario</th>
+										<th>Itens</th>
+										<th>Autor</th>
+										<th>Editora</th>
+										<th>Ano</th>
+										<th>Status</th>
+										<th>especial</th>
+										<th>Pedir</th>										
+									</tr>
+								
+									<c:forEach items="${itemList}" var="item">
+										<tr>
+											<td>${item.isbn}</td>
+											<td>${item.titulo}</td>
+											<td>${item.autor}</td>
+											<td>${item.editora}</td>
+											<td><fmt:formatDate value="${item.ano.time}"
+					   							 pattern="dd/MM/yyyy" /></td>
+											<td>${item.status}</td>
+											<td>${item.especial}</td>
+											<td>
+											<form action="Salvar" method="POST">
+									            <input type="hidden" name="emprestimo.solicitante.id" 
+									                          value="${usuarioLogado.usuario.getId()}"/>
+									            <input type="hidden"  name="emprestimo.itens.isbn" value="${item.isbn}"/>
+									            <button class="btn btn-success btn-sm " type="submit">Pedir</button>
+									          </form>
+									          </td>			
+										</tr>
+									</c:forEach>
+							</table>				
 						</div>
-						<div class="form-group">
-							<label class="control-label" for="senha">Senha:</label> 
-							<input id="senha" class="form-control" type="password" name="usuario.senha"  />
-						</div>
-						<div class="form-group">
-					      <label class="control-label" for="perfil">Perfil:</label>
-						      <select class="form-control" id="perfil" name="usuario.perfil">
-						        <option  value="ALUNO">Aluno</option>
-						        <option	 value="PROFESSOR">Professor</option>
-						        <option  value="BIBLIOTECARIO">Bibliotecario</option>
-						      </select>  
-						</div>
-						<input type="submit" value="Salvar" class="btn btn-primary"  /><br />
+						
+						<input type="submit" value="Salvar" class="btn btn-primary" />
 						<div class="alet alert-success" role="alert"> ${mensagem}</div>
-					</form>
-					<br />
+					</form>			
 				</div>
 			</div>
-		</div>					
+		</div>
 	</main>
 	<footer class="navbar-fixed-bottom navbar-inverse">
 		<p>© Impacta 2015. Todos os direitos reservados. Tel.: 11 3254-8300 / CAMPUS BARRA FUNDA - Av. Rudge, 315</p>

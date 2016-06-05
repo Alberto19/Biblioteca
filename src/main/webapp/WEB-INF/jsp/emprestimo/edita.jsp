@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Inserir Usuarios</title>
+<title>Emprestimo</title>
 	<c:url value="/resources/css" var="cssPath" />
 	<link rel="stylesheet" href="${cssPath }/bootstrap.min.css">
 	<link rel="stylesheet" href="${cssPath }/bootstrap-theme.min.css">
@@ -35,6 +35,7 @@
     padding-top: 20px;
     }
   </style>
+ 
 </head>
 <body>
 	<header>
@@ -51,10 +52,10 @@
 			    </div>
 			    <div class="collapse navbar-collapse" id="myNavbar">
 			      <ul class="nav navbar-nav">
-			        <li><a href="<c:url value='/item/index'/>">Livros</a></li>
-			        <li><a href="<c:url value='/emprestimo/index'/>">Emprestimo</a></li>
+			        <li><a href="<c:url value='/item/index'/>"> Livros </a></li>
+			        <li class="active"><a href="<c:url value='/emprestimo/index'/>">Emprestimo</a></li>
 			        <li><a href="#">Devolução</a></li>
-			     	<li class="active"><a href="<c:url value='/usuario/index'/>">Usuarios</a></li>
+			        <li><a href="<c:url value='/usuario/index'/>">Usuarios</a></li>
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right">
 			        <li>
@@ -66,41 +67,49 @@
 			</div>
 		</nav>
 	</header>
-	<main>	
+	<main>
 		<div class="container-fluid">
 			<div class="row content">
-		 		<div class="col-sm-3 sidenav">
-		      		<ul class="nav nav-pills nav-stacked">
-			        	<li><a href="<c:url value='/usuario/index'/>">Home</a></li>
-			        	<li class="active"><a href="<c:url value='/usuario/form'/>">Inserir Usuarios</a></li>
-			      	</ul>
-	    		</div>
+				 <div class="col-sm-3 sidenav">
+			      		<ul class="nav nav-pills nav-stacked">
+				        	<li><a href="<c:url value='/emprestimo/index'/>">Home</a></li>
+				        	<li><a href="<c:url value='/emprestimo/form'/>">Pedir Emprestimo</a></li>
+				        	<li class="active"><a href="<c:url value='/emprestimo/pedidos'/>">Lista de Pedidos</a></li>
+				      	</ul>
+			    </div>
 				<div class="col-sm-9">
-					<form   action="<c:url value='Salvar' />" method="post">
-						<div class="form-group">
-							<label class="control-label" for="login">Login:</label> 
-							<input id="login" class="form-control" type="text" name="usuario.login" } />
-							
-						</div>
-						<div class="form-group">
-							<label class="control-label" for="senha">Senha:</label> 
-							<input id="senha" class="form-control" type="password" name="usuario.senha"  />
-						</div>
-						<div class="form-group">
-					      <label class="control-label" for="perfil">Perfil:</label>
-						      <select class="form-control" id="perfil" name="usuario.perfil">
-						        <option  value="ALUNO">Aluno</option>
-						        <option	 value="PROFESSOR">Professor</option>
-						        <option  value="BIBLIOTECARIO">Bibliotecario</option>
-						      </select>  
-						</div>
-						<input type="submit" value="Salvar" class="btn btn-primary"  /><br />
-						<div class="alet alert-success" role="alert"> ${mensagem}</div>
-					</form>
-					<br />
+					<div class="form-group">
+						<form action="altera" method="post">
+					  		<fieldset>
+							    <legend>Validar Emprestimo</legend>
+								    <div class="form-group">
+									    <input type="hidden" name="emprestimo.id" 
+									      value="${emprestimo.id }" /> 
+									    <input type="hidden" name="emprestimo.bibliotecario.id" 
+									      value="${usuarioLogado.usuario.getId()}"/>  
+								    
+									    <label for="dataEmprestimo">Data Emprestimo:</label>
+									    <input id="dataEmprestimo" type="text" name="emprestimo.dataEmprestimo" />
+								    </div>
+							    
+								    <div class="form-group">
+								    	<input type="hidden" name="emprestimo.solicitante.id" 
+									       value="${emprestimo.solicitante.id}"/>
+									    <c:forEach items="${emprestimo.itens}" var="itens">
+									    <input type="hidden" name="emprestimo.itens.isbn" 
+									      value="${itens.isbn}" /> 
+									     </c:forEach>    
+								    
+								    	<label for="dataEmprestimo">Data Devolucao:</label>
+								    	<input id="dataEmprestimo" type="text" name="emprestimo.dataDevolucao" />
+								    </div>
+							    <button class="btn btn-success " type="submit">Aprovar Pedido</button>
+					  		</fieldset>
+						</form>		
+					</div>
 				</div>
 			</div>
-		</div>					
+		</div>		
 	</main>
 	<footer class="navbar-fixed-bottom navbar-inverse">
 		<p>© Impacta 2015. Todos os direitos reservados. Tel.: 11 3254-8300 / CAMPUS BARRA FUNDA - Av. Rudge, 315</p>

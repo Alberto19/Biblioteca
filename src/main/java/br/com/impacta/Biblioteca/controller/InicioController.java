@@ -10,7 +10,6 @@ public class InicioController {
 	
 	@Inject
 	public InicioController() {
-	
 	}
 	
 	@Get 

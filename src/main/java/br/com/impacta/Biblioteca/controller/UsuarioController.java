@@ -105,12 +105,12 @@ public class UsuarioController {
 		}
 		dao.Salvar(usuario);
 		// redirecionado o adiciona para a View lista
-		result.include("mensagem", "Item adicionado com sucesso!");
+		result.include("mensagem", "Usuario adicionado com sucesso!");
 		result.redirectTo(this).form();	
 		
 	}
 	
-
+	
 	
 	
 

@@ -51,12 +51,15 @@
 			    <div class="collapse navbar-collapse" id="myNavbar">
 				     <ul class="nav navbar-nav">
 				        <li><a href="<c:url value='/item/index'/>">Livros</a></li>
-				        <li class="active"><a href="<c:url value='/emprestino/index'/>">Emprestimo</a></li>
+				        <li class="active"><a href="<c:url value='/emprestimo/index'/>">Emprestimo</a></li>
 				        <li><a href="#">Devolução</a></li>
 				     	<li ><a href="<c:url value='/usuario/index'/>">Usuarios</a></li>
 				      </ul>
 			      <ul class="nav navbar-nav navbar-right">
-			        <li><a href="<c:url value='/usuario/login'/>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+			        <li>
+			        	<a href="<c:url value='/usuario/login'/>">
+			        	<span class="glyphicon glyphicon-log-in"></span> Logout</a>
+			        </li>
 			      </ul>
 			    </div>
 			</div>
@@ -68,7 +71,8 @@
 		 		<div class="col-sm-3 sidenav">
 		      		<ul class="nav nav-pills nav-stacked">
 			        	<li class="active"><a href="<c:url value='/emprestimo/index'/>">Home</a></li>
-			        	<li><a href="<c:url value='/usuario/form'/>">Inserir Usuarios</a></li>
+			        	<li><a href="<c:url value='/emprestimo/form'/>">Pedir Emprestimo</a></li>
+			        	<li class="active"><a href="<c:url value='/emprestimo/pedidos'/>">Lista de Pedidos</a></li>
 			      	</ul>
 	    		</div>
 				<div class="col-sm-9">

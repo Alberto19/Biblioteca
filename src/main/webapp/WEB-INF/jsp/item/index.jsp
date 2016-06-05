@@ -52,12 +52,15 @@
 			    <div class="collapse navbar-collapse" id="myNavbar">
 			       <ul class="nav navbar-nav">
 			        <li class="active"><a href="<c:url value='/item/index'/>">Livros</a></li>
-			        <li><a href="#">Emprestimo</a></li>
+			        <li><a href="<c:url value='/emprestimo/index'/>">Emprestimo</a></li>
 			        <li><a href="#">Devolução</a></li>
 			     	<li><a href="<c:url value='/usuario/index'/>">Usuarios</a></li>
 			      </ul>
 			      <ul class="nav navbar-nav navbar-right">
-			        <li><a href="<c:url value='/usuario/login'/>"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+			        <li>
+			        	<a href="<c:url value='/usuario/login'/>">
+			        	<span class="glyphicon glyphicon-log-in" ></span> Logout</a>
+			        </li>
 			      </ul>
 			    </div>
 			</div>
@@ -82,7 +85,8 @@
 					<th>Autor</th>
 					<th>Editora</th>
 					<th>Ano</th>
-					<th>Status</th>
+					<th>Staus</th>
+					<th>Especial</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -95,11 +99,7 @@
 						<td><fmt:formatDate value="${item.ano.time}"
    							 pattern="dd/MM/yyyy" />       </td>
 						<td>${item.status}</td>
-					<!-- 
-						<td>
-							<c:url value="/produto/enviaPedidoDeNovosItens?produto.nome=${produto.nome}" var="url" />    
-							<a href="${url }"> Pedir mais Itens!</a>
-						</td> -->	
+						<td>${item.especial} </td>
 					</tr>
 				</c:forEach>
 			</tbody>

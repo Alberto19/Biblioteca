@@ -26,6 +26,7 @@ public class ItemController {
 		this.validator = validator;
 		this.dao = dao;
 		this.result = result;
+
 	}
 	public ItemController() {
 		this(null,null,null);
@@ -51,7 +52,7 @@ public class ItemController {
 			validator.onErrorForwardTo(this).form();
 		}else if(item.getAno() == null){
 			validator.onErrorForwardTo(this).form();
-		}else if(item.getQuantidade() == 0){
+		}else if(item.getStatus().equalsIgnoreCase("Indisponivel")){
 			validator.onErrorForwardTo(this).form();
 		}else{
 			dao.Salvar(item);
