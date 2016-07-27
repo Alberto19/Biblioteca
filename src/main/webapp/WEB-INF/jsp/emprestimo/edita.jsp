@@ -110,7 +110,7 @@
 									       value="${emprestimo.solicitante.id}"/>
 									    <c:forEach items="${emprestimo.itens}" var="itens">
 									    <input type="hidden" name="emprestimo.itens.isbn" 
-									      value="${itens.isbn}" /> 
+									      value="${itens.isbn}" />
 									     </c:forEach>    
 								    
 								    	<label for="dataEmprestimo">Data Devolucao:</label>

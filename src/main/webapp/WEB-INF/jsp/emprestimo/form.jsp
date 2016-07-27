@@ -81,6 +81,7 @@
                          		
 						<div class="form-group">
 							<table class="table table-stripped table-hover  table-bordered table-responsive"">
+								<thead>
 									<tr>
 										<th>Usuario</th>
 										<th>Itens</th>
@@ -91,6 +92,7 @@
 										<th>especial</th>
 										<th>Pedir</th>										
 									</tr>
+								</thead>
 								
 									<c:forEach items="${itemList}" var="item">
 										<tr>

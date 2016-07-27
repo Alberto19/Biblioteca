@@ -9,6 +9,7 @@ import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.validator.Validator;
 import br.com.impacta.Biblioteca.dao.EmprestimoDAO;
 import br.com.impacta.Biblioteca.dao.ItemDAO;
+import br.com.impacta.Biblioteca.dao.DevolucaoDAO;
 import br.com.impacta.Biblioteca.model.Emprestimo;
 import br.com.impacta.Biblioteca.model.Usuario;
 
@@ -19,6 +20,7 @@ public class EmprestimoController {
 	private Validator validator;
 	private Result result;
 	private ItemDAO itemDao;
+	private DevolucaoDAO DevolucaoDAO;
 	
 	
 	@Inject
@@ -50,17 +52,12 @@ public class EmprestimoController {
 	public Emprestimo edita(Long id) {
 		  return dao.BuscaPedido(id);
 	}
-	
-	
-	
-	
-	
 	@Post
 	public void altera(Emprestimo emprestimo){
 		dao.Update(emprestimo);
+		dao.Remover(emprestimo);
 		result.redirectTo(this).pedidos();
 	}
-	
 	@Post
 	public void Salvar(Emprestimo emprestimo){
 		dao.Salvar(emprestimo);

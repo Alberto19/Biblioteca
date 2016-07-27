@@ -119,7 +119,7 @@
 										
 										<a href="edita?id=${emprestimo.id}">
 											<button class="btn btn btn-warning btn-sm " type="submit">
-											Editar</button>
+											Aprovar</button>
 											</a> 
 											
 							          	</td>			
